@@ -314,11 +314,13 @@ class QueryBuilder extends BaseObject
             return $operator === 'in' ? ['terms' => ['_uid' => []]] : []; // this condition is equal to WHERE false
         }
 
-        if (count($column) > 1) {
-            return $this->buildCompositeInCondition($operator, $column, $values);
-        } elseif (is_array($column)) {
-            $column = reset($column);
-        }
+		if (is_array($column)) {
+			if (count($column) > 1) {
+				return $this->buildCompositeInCondition($operator, $column, $values);
+			} elseif (is_array($column)) {
+				$column = reset($column);
+			}
+		}
         $canBeNull = false;
         foreach ($values as $i => $value) {
             if (is_array($value)) {
