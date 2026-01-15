@@ -312,7 +312,7 @@ class ActiveRecord extends BaseActiveRecord
      *
      * @return string[] array of primary key attributes. Only the first element of the array will be used.
      */
-    final public static function primaryKey()
+    public static function primaryKey()
     {
         return ['_id'];
     }
